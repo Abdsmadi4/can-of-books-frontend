@@ -1,7 +1,10 @@
 import React from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import BestBooks from './BestBooks';
+import Header from './Components/Header';
+import Footer from './Components/Footer';
+import BestBooks from './Components/BestBooks';
+import Welcome from './Components/Welcome';
+import About from './About';
+import { useAuth0 } from '@auth0/auth0-react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
@@ -9,25 +12,41 @@ import {
   Route
 } from "react-router-dom";
 
-class App extends React.Component {
-  render() {
-    return (
-      <>
-        <Router>
-          <Header />
+function App() {
+  const {
+    isAuthenticated,
+  } = useAuth0();
+
+
+  return (
+    <>
+      <Router>
+        <Header />
+
+        {!isAuthenticated &&
+          <Welcome />
+        }
+
+        {isAuthenticated &&
           <Routes>
-            <Route 
+            <Route
               exact path="/"
               element={<BestBooks />}
             >
             </Route>
-            {/* PLACEHOLDER: add a route with a path of '/about' that renders the `About` component */}
           </Routes>
-          <Footer />
-        </Router>
-      </>
-    )
-  }
+        }
+        <Routes>
+          <Route
+            exact path="/profile"
+            element={<About />}
+          ></Route>
+        </Routes>
+        <Footer />
+      </Router>
+    </>
+  )
 }
+
 
 export default App;

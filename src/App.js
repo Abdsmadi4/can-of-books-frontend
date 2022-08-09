@@ -38,7 +38,7 @@ function App() {
         }
         <Routes>
           <Route
-            exact path="/profile"
+            exact path="/about"
             element={<About />}
           ></Route>
         </Routes>

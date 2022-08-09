@@ -10,7 +10,7 @@ class Header extends React.Component {
                 <Navbar.Brand>My Favorite Books</Navbar.Brand>
                 <Nav>
                     <Link to="/" className="nav-link">Home</Link>
-                    <Link to="/profile" className="nav-link">Profile</Link>
+                    <Link to="/about" className="nav-link">About</Link>
                     <AuthButtons />
                 </Nav>
                 {/* PLACEHOLDER: render a navigation link to the about page */}
